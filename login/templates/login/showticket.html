@@ -1,0 +1,215 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/ico" href="/static/img/favicon.ico">
+    <title>e-Ticket</title>
+    <style>
+        @page{
+            margin: 37px 50px;
+        }
+        *{
+            padding: 0;
+            margin: 0;
+            font-family: sans-serif;
+        }
+        body{
+            padding: 7% 7%;
+        }
+        nav{
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        .logo{
+            display: flex;
+        }
+        .header{
+            text-align: right;
+            font-size: 2em;
+            font-weight: 600;
+        }
+        li{
+            margin-top: 5px;
+            margin-bottom: 5px;
+        }
+        .col{
+            -ms-flex-preferred-size:0;
+            flex-basis:0;
+            -ms-flex-positive:1;
+            flex-grow:1;
+            max-width:100%
+        }
+        table{
+            margin-top: 0;
+            width: 100%;
+        }
+        .table{
+            margin-top: 25px;
+        }
+        tr{
+            width: 100%;
+        }
+        th{
+            width: 25%;
+            text-align: left;
+            padding: 5px 20px;
+        }
+        td{
+            width: 25%;
+            text-align: left;
+            padding: 5px 15px;
+        }
+        caption{
+            text-align: left;
+            background-color: #a9a9a9;
+            color: white;
+            padding: 8px 15px;
+            font-weight: bold;
+        }
+        .tr-caption{
+            text-align: left;
+            background-color: #a9a9a9;
+            color: white;
+            padding: 0;
+            font-weight: bold;
+            width: 100%;
+            font-size: 1.4em;
+        }
+        .tr-even{
+            background-color: #f0f0f0;
+        }
+        .tr-odd{
+            background-color: white;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <!-- <div class="col logo" style="width: 50%;">
+            <span style="color: black; font-weight: bold; font-size: 2.5em;">FLIGHT</span>
+        </div> -->
+        <div style="width: 50%;font-size:0.6cm;font-weight:bolder;">
+            <span style="margin: auto 0 auto auto;">Boarding Pass</span>
+        </div>
+    </nav>
+    <hr style="height: 1px; border: 0; background-color: grey;" noshade>
+    <main style="padding: 10px;">
+
+        <div class="table-div">
+            <table class="table">
+                <tr class="tr-caption">
+                    <td style="width: 100%;">TICKET INFORMATION</td>
+                </tr>
+            </table>
+            <table cellspacing='0' >
+                <tr class="tr-odd">
+                    <th>FLIGHT NUMBER</th>
+                    <td>{{ticket.FlightNumber}}</td>
+                    <th>BOOKING DATE & TIME</th>
+                    <td>{{ticket.BookingDate}}<br>{{ticket.BookingTime}}</td>
+                </tr>
+                <tr class="tr-even">
+                    <th>FLIGHT DATE</th>
+                    <td>{{ticket.FlightDate}}</td>
+                    <th>FLIGHT TIME</th>
+                    <td>{{ticket.FlightBoarding}}</td>
+                </tr>
+                <tr class="tr-odd">
+                    <th>EMAIL</th>
+                    <td>{{ticket.Email}}</td>
+                    <th>MOBILE</th>
+                    <td>{{ticket.Mobile}}</td>
+                </tr>
+                <tr class="tr-even">
+                    <th>STATUS</th>
+                    <td>CONFIRMED</td>
+                    <th>TICKET NUMBER</th>
+                    <td>{{ticket.TicketNumber}}</td>
+                </tr>
+            </table>
+            <table class="table">
+                <tr class="tr-caption">
+                    <td style="width: 100%;">PASSENGER INFORMATION</td>
+                </tr>
+            </table>
+            <table cellspacing='0'>
+                <tr class="tr-odd">
+                    <th>S NO.</th>
+                    <th>PSNGR NAME - GENDER</th>
+                </tr>
+                {% for i in splitArr %}
+                        <tr class="tr-odd">
+                            <td style="width: 30%; padding-left: 20px;">{{forloop.counter}}</td>
+                            <td style="width: 30%; padding-left: 20px;">{{i|slice:"1:-1"}}</td>
+                        </tr>
+                {% endfor %}
+                    
+            </table>
+            <table class="table">
+                <tr class="tr-caption">
+                    <td style="width: 100%; padding-left: 20px;">FLIGHT INFORMATION</td>
+                </tr>
+            </table>
+            <table cellspacing='0'>
+                <tr class="tr-odd">
+                    <th>FLIGHT</th>
+                    <th>DEPART/BOARDING</th>
+                    <th>TO/ARRIVAL</th>
+                </tr>
+                <tr class="tr-even">
+                    <td style="width: 29%; padding-left: 20px;">{{ticket.FlightName}} <br> ({{ticket.FlightNumber}})</td>
+                    <td style="width: 22%; padding-left: 20px;">{{ticket.FlightFrom}} <br> ({{ticket.FlightBoarding}})</td>
+                    <td style="width: 49%; padding-left: 20px;">{{ticket.FlightTo}} <br> ({{ticket.FlightArrival}})</td>
+                </tr>
+            </table>
+
+            <!---->
+            <table class="table">
+                <tr class="tr-caption">
+                    <td style="width: 100%;">FARE DETAILS</td>
+                </tr>
+            </table>
+            <table cellspacing='0' style="width: 100vw;">
+                <tr class="tr-odd">
+                    <th style="width: 35%;">FARE</th>
+                    <td style="width: 65%;">INR {{ticket.FlightFare}}</td>
+                </tr>
+                <tr class="tr-even">
+                    <th style="width: 35%;">CHARGES</th>
+                    <td style="width: 65%;">INR {{ticket.FlightCharges}}</td>
+                </tr>
+                <tr class="tr-odd">
+                    <th style="width: 35%;">DISCOUNT</th>
+                    <td style="width: 65%;">INR (-) {{ticket.DiscountAmount}}</td>
+                </tr>
+                <tr class="tr-even">
+                    <th style="width: 35%;">TOTAL</th>
+                    <td style="width: 65%;">INR {{ticket.TotalFare}}</td>
+                </tr>
+            </table>
+        </div>
+    </main>
+
+    <div style="margin: 30px auto;font-size:0.26cm">
+        <h3>Important information</h3>
+        <ul style="padding-left: 50px;">
+            <li>
+                This is your E-Ticket Iternary. You must bring it to the airport for check-in, and it is recommended you to retain a copy for your records.
+            </li>
+            <li>
+                Each passenger travelling needs a printed copy of this document for immigrations, customs, airport security checks and duty free purchases.
+            </li>
+            <li>
+                Economy Class passengers should report to airline check-in desks 3 hours prior to departure of all flights. First and Business Class passengers should report to airline check-in desks not later than 1 hour prior to departure. Boarding for your flight begins at least 35 minutes before your scheduled departure time. Gates close 15 minutes prior to departure
+            </li>
+        </ul>
+    </div>
+
+    <p style="margin: 10px 0; font-size: .8em;">&#169;	 2020 Flight Inc. All rights reserved.</p>
+    <!-- 30 Kgs Check-in, 7 Kgs Cabin-->
+</body>
+</html>

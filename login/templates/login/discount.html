@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html>
+    {% load static %}
+<head>
+    <title>Offers</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width" />
+    
+    <link rel="stylesheet" href="{% static 'font.css'%}"/>
+    <link rel="stylesheet" href="{% static 'font-awesome.css'%}"/>
+    <link rel="stylesheet" href="{% static 'normalize.css'%}"/>
+    <!--css plugin-->
+    <link rel="stylesheet" href="{% static 'flexslider.css'%}"/>
+    <link rel="stylesheet" href="{% static 'jquery.nouislider.css'%}"/>
+    <link rel="stylesheet" href="{% static 'jquery.popupcommon.css'%}"/>
+
+    <link rel="stylesheet" href="{% static 'style.css'%}"/>
+    <link rel="stylesheet" href="{% static 'style-dark.css'}">
+    <link rel="stylesheet" href="{% static 'style-gray.css'}">
+    <!--[if IE 9]>
+    <link rel="stylesheet" href="css/ie9.css"/>
+    <![endif]-->
+    <!--[if lte IE 8]>
+    <link rel="stylesheet" href="css/ie8.css"/>
+    <![endif]-->
+
+    <link rel="stylesheet" href="{% static 'res-menu.css'}"/>
+    <link rel="stylesheet" href="{% static 'responsive.css'}"/>
+    <!--[if lte IE 8]>
+        <script type="text/javascript" src="js/html5.js"></script>
+    <![endif]-->
+
+</head>
+<script>
+    function myFunction() {
+      alert("Coupon added!");
+    }
+    </script>
+    
+<body class="gray"><!--<div class="alert_w_p_u"></div>-->
+<div class="container-page">
+    <div class="mp-pusher" id="mp-pusher">
+        <header style="background-color: #1f3646" class="mod-header">
+            <div class="grid_frame">
+                <div class="container_grid clearfix">
+                    <div class="grid_12">
+                        <div class="header-content clearfix">
+                            <div>
+                                <div class="logo">
+                                    <img src="{% static 'booking_img/logo.png'%}" alt="Flight Template">
+                                </div>
+                            </div>
+                            
+                            <nav class="main-nav">
+                                <ul id="main-menu" class="nav nav-horizontal clearfix">
+                                    <li class="active">
+                                        <a href="booking">Home</a>
+                                    </li>
+
+                                    <li>
+                                        <a href="discount">My coupons</a>
+                                        <i class="icon iPickRed lbl-count"><span>0</span></i>
+                                    </li>
+                                </ul>
+                                <a id="sys_btn_toogle_menu" class="btn-toogle-res-menu" href="#alternate-menu"></a>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="sys_pop_login" class="pop-login">
+                <div class="viewport-pop">
+                    <div class="transport-viewer clearfix">
+                        <div class="mod-register">
+                            <h3 class="rs title-mod">Hello ! Welcome to Phoenix Air!</h3>
+                            <div class="wrap-form-reg clearfix">
+                                <form action="#">
+                                    <div class="left-form">
+                                      
+                                        <div class="wrap-login-btn">
+                                            <button class="btn-flat gr btn-submit-reg" type="submit">Login</button>
+                                            <div class="sep-connect">
+                                                <span>Or</span>
+                                            </div>
+                                            <div class="grp-connect">
+                                                <a class="btn-flat fb" href="#">Facebook</a>
+                                                <a class="btn-flat gg" href="#">Google</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                  
+                                </form>
+                                <i class="line-sep"></i>
+                            </div>
+                        </div><!--end: Login panel -->
+                      
+                    </div>
+                    <div id="sys_paging_state" class="paging-state">
+                        <i class="active"></i>
+                        <i></i>
+                    </div>
+                    <i id="sys_close_login_popup" class="icon iClose close-popop"></i>
+                </div>
+            </div>
+        </header><!--end: header.mod-header -->
+        <nav id="mp-menu" class="mp-menu alternate-menu">
+           
+        </nav><!--end: .mp-menu -->
+        <div class="top-area">
+            <div class="mod-head-slide">
+                <div class="grid_frame">
+                    <div class="wrap-slide">
+                        <p class="ta-c"><img src="{% static 'ajax-loader.gif'%}" alt="loading"></p>
+                        <div id="sys_head_slide" class="head-slide flexslider">
+                            <ul class="slides">
+                                <li>
+                                    <img src="{% static '01_banner.jpg'%}" alt=""/>
+                                </li>
+                              
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+  
+        <div class="grid_frame page-content">
+            <div class="container_grid">
+                <div class="mod-grp-coupon block clearfix">
+                    <div class="grid_12">
+                        <h3 class="title-block has-link">
+                            New Coupons
+                            <a href="#" class="link-right">See all <i class="pick-right"></i></a>
+                        </h3>
+                    </div>
+                    <div class="block-content list-coupon clearfix">
+                        <div class="coupon-item grid_3">
+                            <div class="coupon-content">
+                                <div class="img-thumb-center">
+                                    <div class="wrap-img-thumb">
+                                        <span class="ver_hold"></span>
+                                        <a href="#" class="ver_container"><img src="{% static '01_01.jpg'%}" alt="$COUPON_TITLE"></a>
+                                    </div>
+                                </div>
+                                <div class="coupon-brand">Indigo</div>
+                                <div class="coupon-desc">Find Parts for All Major Brands at one site </div>
+
+                                <div class="time-left">9 days 4 hours left</div>
+                              
+                                <form action="discount" method="post">
+                                    {% csrf_token %}
+                                    <input type="number"  style="color: #0099FF;
+                                    font-size: 18px; outline: none; border: none;" name="amount" value="500" readonly><br> Off</label>
+                                    <br>
+                                    <label for="coupon_code">Code:</label>
+                                    <input type="text" id="coupon_code" name="coupon_code" value="5IM2KJU" readonly><br><br>
+                                    <input type="submit" value=" Purchase This Coupon " class="btn btn-blue btn-take-coupon" onclick="myFunction()">
+                                  </form>
+                            </div>
+                            <i class="stick-lbl hot-sale"></i>
+                        </div><!--end: .coupon-item -->
+                        <div class="coupon-item grid_3">
+                            <div class="coupon-content">
+                                <div class="img-thumb-center">
+                                    <div class="wrap-img-thumb">
+                                        <span class="ver_hold"></span>
+                                        <a href="#" class="ver_container"><img src="{% static '01_02.jpg'%}" alt="$COUPON_TITLE"></a>
+                                    </div>
+                                </div>
+                                
+                                <div class="coupon-brand">Jet Airways</div>
+                                <div class="coupon-desc">Find Parts for All Major Brands at one site </div>
+                                <div class="time-left">0 days 4 hours left</div>
+                                <form action="discount" method="post">
+                                    {% csrf_token %}
+                                    <input type="number"  style="color: #0099FF;
+                                    font-size: 18px; outline: none; border: none;" name="amount" value="800" readonly><br> Off</label>
+                                    <br>
+                                    <label for="coupon_code">Code:</label>
+                                    <input type="text" id="coupon_code" name="coupon_code" value="56FHFG" readonly><br><br>
+                                    <input type="submit" value=" Purchase This Coupon " class="btn btn-blue btn-take-coupon" onclick="myFunction()">
+                                  </form>
+                            </div>
+                        </div><!--end: .coupon-item -->
+                        <div class="coupon-item grid_3">
+                            <div class="coupon-content">
+                                <div class="img-thumb-center">
+                                    <div class="wrap-img-thumb">
+                                        <span class="ver_hold"></span>
+                                        <a href="#" class="ver_container"><img src="{% static '01_03.jpg'%}" alt="$COUPON_TITLE"></a>
+                                    </div>
+                                </div>
+                               
+                                <div class="coupon-brand">British Airways</div>
+                                <div class="coupon-desc">Find Parts for All Major Brands at one site </div>
+                                <div class="time-left">0 days 4 hours left</div>
+                                <form action="discount" method="post">
+                                    {% csrf_token %}
+                                    <input type="number"  style="color: #0099FF;
+                                    font-size: 18px; outline: none; border: none;" name="amount" value="900" readonly><br> Off</label>
+                                    <br>
+                                    <label for="coupon_code">Code:</label>
+                                    <input type="text" id="coupon_code" name="coupon_code" value="565FDGD" readonly><br><br>
+                                    <input type="submit" value=" Purchase This Coupon " class="btn btn-blue btn-take-coupon" onclick="myFunction()">
+                                  </form>
+                            </div>
+                        </div><!--end: .coupon-item -->
+                        <div class="coupon-item grid_3">
+                            <div class="coupon-content">
+                                <div class="img-thumb-center">
+                                    <div class="wrap-img-thumb">
+                                        <span class="ver_hold"></span>
+                                        <a href="#" class="ver_container"><img src="{% static '01_04.jpg'%}" alt="$COUPON_TITLE"></a>
+                                    </div>
+                                </div>
+                                
+                                <div class="coupon-brand">Indigo</div>
+                                <div class="coupon-desc">Find Parts for All Major Brands at one site </div>
+                                <div class="time-left">0 days 4 hours left</div>
+                                <form action="discount" method="post">
+                                    {% csrf_token %}
+                                    <input type="number"  style="color: #0099FF;
+                                    font-size: 18px; outline: none; border: none;" name="amount" value="1500" readonly><br> Off</label>
+                                    <br>
+                                    <label for="coupon_code">Code:</label>
+                                    <input type="text" id="coupon_code" name="coupon_code" value="56DG566" readonly><br><br>
+                                    <input type="submit" value=" Purchase This Coupon " class="btn btn-blue btn-take-coupon" onclick="myFunction()">
+                                  </form>
+                            </div>
+                            <i class="stick-lbl hot-sale"></i>
+                        </div><!--end: .coupon-item -->
+                    </div>
+                </div><!--end block: New Coupons-->
+                <div class="mod-grp-coupon block clearfix">
+                    <div class="grid_12">
+                        <h3 class="title-block has-link">
+                            Featured Coupons
+                            <a href="#" class="link-right">See all <i class="pick-right"></i></a>
+                        </h3>
+                    </div>
+                    <div class="block-content list-coupon clearfix">
+                        <div class="coupon-item grid_3">
+                            <div class="coupon-content">
+                                <div class="img-thumb-center">
+                                    <div class="wrap-img-thumb">
+                                        <span class="ver_hold"></span>
+                                        <a href="#" class="ver_container"><img src="{% static '01_05.jpg'%}" alt="$COUPON_TITLE"></a>
+                                    </div>
+                                </div>
+                                
+                                <div class="coupon-brand">Qatar Airways</div>
+                                <div class="coupon-desc">Find Parts for All Major Brands at one site </div>
+                                <div class="time-left">3 days 4 hours left</div>
+                                <form action="discount" method="post">
+                                    {% csrf_token %}
+                                    <input type="number"  style="color: #0099FF;
+                                    font-size: 18px; outline: none; border: none;" name="amount" value="400" readonly><br> Off</label>
+                                    <br>
+                                    <label for="coupon_code">Code:</label>
+                                    <input type="text" id="coupon_code" name="coupon_code" value="86FH952" readonly><br><br>
+                                    <input type="submit" value=" Purchase This Coupon " class="btn btn-blue btn-take-coupon" onclick="myFunction()">
+                                  </form>
+                            </div>
+                            <i class="stick-lbl hot-sale"></i>
+                        </div><!--end: .coupon-item -->
+                        <div class="coupon-item grid_3">
+                            <div class="coupon-content">
+                                <div class="img-thumb-center">
+                                    <div class="wrap-img-thumb">
+                                        <span class="ver_hold"></span>
+                                        <a href="#" class="ver_container"><img src="{% static '01_04.jpg'%}" alt="$COUPON_TITLE"></a>
+                                    </div>
+                                </div>
+                                
+                                <div class="coupon-brand">Qatar Airways</div>
+                                <div class="coupon-desc">Find Parts for All Major Brands at one site </div>
+                                <div class="time-left">5 days 1 hours left</div>
+                                <form action="discount" method="post">
+                                    {% csrf_token %}
+                                    <input type="number"  style="color: #0099FF;
+                                    font-size: 18px; outline: none; border: none;" name="amount" value="1200" readonly><br> Off</label>
+                                    <br>
+                                    <label for="coupon_code">Code:</label>
+                                    <input type="text" id="coupon_code" name="coupon_code" value="59JFHG" readonly><br><br>
+                                    <input type="submit" value=" Purchase This Coupon " class="btn btn-blue btn-take-coupon"  onclick="myFunction()" >
+                                  </form>
+                            </div>
+                            <i class="stick-lbl trust-brand-y"></i>
+                        </div><!--end: .coupon-item -->
+                        <div class="coupon-item grid_3">
+                            <div class="coupon-content">
+                                <div class="img-thumb-center">
+                                    <div class="wrap-img-thumb">
+                                        <span class="ver_hold"></span>
+                                        <a href="#" class="ver_container"><img src="{% static '01_02.jpg'%}" alt="$COUPON_TITLE"></a>
+                                    </div>
+                                </div>
+                                
+                                <div class="coupon-brand">British Airways</div>
+                                <div class="coupon-desc">Find Parts for All Major Brands at one site </div>
+                                <div class="time-left">2 days 2 hours left</div>
+                                <form action="discount" method="post">
+                                    {% csrf_token %}
+                                    <input type="number"  style="color: #0099FF;
+                                    font-size: 18px; outline: none; border: none;" name="amount" value="300" readonly><br> Off</label>
+                                    <br>
+                                    <label for="coupon_code">Code:</label>
+                                    <input type="text" id="coupon_code" name="coupon_code" value="529JFG6" readonly><br><br>
+                                    <input type="submit" value=" Purchase This Coupon " class="btn btn-blue btn-take-coupon"  onclick="myFunction()">
+                                  </form>
+                            </div>
+                            <i class="stick-lbl trust-brand-b"></i>
+                        </div><!--end: .coupon-item -->
+                        <div class="coupon-item grid_3">
+                            <div class="coupon-content">
+                                <div class="img-thumb-center">
+                                    <div class="wrap-img-thumb">
+                                        <span class="ver_hold"></span>
+                                        <a href="#" class="ver_container"><img src="{% static '01_01.jpg'%}" alt="$COUPON_TITLE"></a>
+                                    </div>
+                                </div>
+                                
+                                <div class="coupon-brand">Qantas</div>
+                                <div class="coupon-desc">Find Parts for All Major Brands at one site </div>
+                                <div class="time-left">1 days 3 hours left</div>
+                                <form action="discount" method="post">
+                                    {% csrf_token %}
+                                    <input type="number"  style="color: #0099FF;
+                                    font-size: 18px; outline: none; border: none;" name="amount" value="700" readonly><br> Off</label>
+                                    <br>
+                                    <label for="coupon_code">Code:</label>
+                                    <input type="text" id="coupon_code" name="coupon_code" value="874YY6" readonly><br><br>
+                                    <input type="submit" value=" Purchase This Coupon " class="btn btn-blue btn-take-coupon" onclick="myFunction()" >
+                                  </form>
+                            </div>
+                        </div><!--end: .coupon-item -->
+                        <div class="coupon-item grid_3">
+                            <div class="coupon-content">
+                                <div class="img-thumb-center">
+                                    <div class="wrap-img-thumb">
+                                        <span class="ver_hold"></span>
+                                        <a href="#" class="ver_container"><img src="{% static '01_02.jpg'%}" alt="$COUPON_TITLE"></a>
+                                    </div>
+                                </div>
+                                
+                                <div class="coupon-brand">Qantas</div>
+                                <div class="coupon-desc">Find Parts for All Major Brands at one site </div>
+                                <div class="time-left">5 days 1 hours left</div>
+                                <form action="discount" method="post">
+                                    {% csrf_token %}
+                                    <input type="number"  style="color: #0099FF;
+                                    font-size: 18px; outline: none; border: none;" name="amount" value="850" readonly><br> Off</label>
+                                    <br>
+                                    <label for="coupon_code">Code:</label>
+                                    <input type="text" id="coupon_code" name="coupon_code" value="5847HJF" readonly><br><br>
+                                    <input type="submit" value=" Purchase This Coupon " class="btn btn-blue btn-take-coupon" onclick="myFunction()">
+                                  </form>
+                            </div>
+                        </div><!--end: .coupon-item -->
+                        <div class="coupon-item grid_3">
+                            <div class="coupon-content">
+                                <div class="img-thumb-center">
+                                    <div class="wrap-img-thumb">
+                                        <span class="ver_hold"></span>
+                                        <a href="#" class="ver_container"><img src="{% static '01_03.jpg'%}" alt="$COUPON_TITLE"></a>
+                                    </div>
+                                </div>
+                                
+                                <div class="coupon-brand">Qantas</div>
+                                <div class="coupon-desc">Find Parts for All Major Brands at one site </div>
+                                <div class="time-left">3 days 3 hours left</div>
+                                <form action="discount" method="post">
+                                    {% csrf_token %}
+                                    <input type="number"  style="color: #0099FF;
+                                    font-size: 18px; outline: none; border: none;" name="amount" value="1100" readonly><br> Off</label>
+                                    <br>
+                                    <label for="coupon_code">Code:</label>
+                                    <input type="text" id="coupon_code" name="coupon_code" value="36GTY6" readonly><br><br>
+                                    <input type="submit" value=" Purchase This Coupon " class="btn btn-blue btn-take-coupon" onclick="myFunction()" >
+                                  </form>
+                            </div>
+                        </div><!--end: .coupon-item -->
+                        <div class="coupon-item grid_3">
+                            <div class="coupon-content">
+                                <div class="img-thumb-center">
+                                    <div class="wrap-img-thumb">
+                                        <span class="ver_hold"></span>
+                                        <a href="#" class="ver_container"><img src="{% static '01_05.jpg'%}" alt="$COUPON_TITLE"></a>
+                                    </div>
+                                </div>
+                                
+                                <div class="coupon-brand">Emirates</div>
+                                <div class="coupon-desc">Find Parts for All Major Brands at one site </div>
+                                <div class="time-left">4 days 4 hours left</div>
+                                <form action="discount" method="post">
+                                    {% csrf_token %}
+                                    <input type="number"  style="color: #0099FF;
+                                    font-size: 18px; outline: none; border: none;" name="amount" value="550" readonly><br> Off</label>
+                                    <br>
+                                    <label for="coupon_code">Code:</label>
+                                    <input type="text" id="coupon_code" name="coupon_code" value="96G54T" readonly><br><br>
+                                    <input type="submit" value=" Purchase This Coupon " class="btn btn-blue btn-take-coupon" onclick="myFunction()" >
+                                  </form>
+                            </div>
+                        </div><!--end: .coupon-item -->
+                        <div class="coupon-item grid_3">
+                            <div class="coupon-content">
+                                <div class="img-thumb-center">
+                                    <div class="wrap-img-thumb">
+                                        <span class="ver_hold"></span>
+                                        <a href="#" class="ver_container"><img src="{% static '01_01.jpg'%}" alt="$COUPON_TITLE"></a>
+                                    </div>
+                                </div>
+                               
+                                <div class="coupon-brand">Emirates</div>
+                                <div class="coupon-desc">Find Parts for All Major Brands at one site </div>
+                                <div class="time-left">4 days 7 hours left</div>
+                                <form action="discount" method="post">
+                                    {% csrf_token %}
+                                    <input type="number"  style="color: #0099FF;
+                                    font-size: 18px; outline: none; border: none;" name="amount" value="450" readonly><br> Off</label>
+                                    <br>
+                                    <label for="coupon_code" >Code:</label>
+                                    <input type="text" id="coupon_code" name="coupon_code" value="96H5H7" readonly><br><br>
+                                    <input type="submit" value=" Purchase This Coupon " class="btn btn-blue btn-take-coupon" onclick="myFunction()">
+                                  </form>
+                            </div>
+                        </div><!--end: .coupon-item -->
+                    </div>
+                    <a class="grid_6 btn btn-orange btn-load-more" href="#">Load more coupon</a>
+                </div><!--end block: Featured Coupons-->
+            
+                </div><!--end: .mod-brand -->
+            </div>
+        </div>
+    
+    </div>
+</div>
+
+<script type="text/javascript" src="{% static 'jquery-1.10.2.js'%}"></script>
+<script type="text/javascript" src="{% static 'jquery.flexslider-min.js'%}"></script>
+<script type="text/javascript" src="{% static 'jquery.nouislider.js'%}"></script>
+<script type="text/javascript" src="{% static 'jquery.popupcommon.js'%}"></script>
+<script type="text/javascript" src="{% static 'html5lightbox.js'%}"></script>
+<!--//js for responsive menu-->
+<script type="text/javascript" src="{% static 'modernizr.custom.js'%}"></script>
+<script type="text/javascript" src="{% static 'classie.js'%}"></script>
+<script type="text/javascript" src="{% static 'mlpushmenu.js'%}"></script>
+
+<script type="text/javascript" src="{% static 'script.js'%}"></script>
+
+<!--[if lte IE 9]>
+<script type="text/javascript" src="js/jquery.placeholder.js"></script>
+<script type="text/javascript" src="js/create.placeholder.js"></script>
+<![endif]-->
+<!--[if lte IE 8]>
+<script type="text/javascript" src="js/ie8.js"></script>
+<![endif]-->
+
+</body>
+</html>
+
+

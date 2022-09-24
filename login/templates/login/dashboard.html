@@ -1,0 +1,221 @@
+{% load static %}
+
+{% block head %}
+    <script type="text/javascript" src="{% static 'bookings.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'bookings_style.css' %}">
+    <link rel="stylesheet" href="{% static 'booking_css/fontAwesome.css'%}">
+    <title>Dashboard</title>
+    <style>
+        .dropbtn {
+            background-color: white;
+            color: rgb(15, 2, 2);
+            padding: 16px;
+            font-size: 16px;
+            border: none;
+            border-radius: 9px;
+            cursor: pointer;
+            }
+
+            .dropbtn:hover, .dropbtn:focus {
+            background-color: #fae987;
+            }
+
+            .dropdown {
+            position: relative;
+            display: inline-block;
+            color: #000;
+            border-radius: 9px;
+            }
+
+            .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #fcc8c8;
+            min-width: 160px;
+            border-radius: 8px;
+            margin: 4px;
+            overflow: auto;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+            }
+
+            .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            }
+
+            .dropdown a:hover {background-color: #fae987}
+
+            .show {display: block;}
+
+            .dropbtn1 {
+            background-color: white;
+            color: rgb(15, 2, 2);
+            padding: 16px;
+            display:block;
+            font-size: 16px;
+            border: none;
+            border-radius: 9px;
+            cursor: pointer;
+            float: right;
+            }
+            .dropbtn1:hover, .dropbtn1:focus {
+            background-color: #fae987;
+            }
+    </style>
+{% endblock head %}
+
+{% block body %}
+<div style="background-color: white;">
+    <div class="dropdown">
+        
+        <div id="myDropdown" class="dropdown-content">
+            {% if user.is_authenticated == False %}<a href="login">Login</a> 
+                <a href="./register">Register</a>
+            {% else %}
+                <a href="./logout">Logout</a> 
+                <a href="./feedback">Feedback</a>
+                <a href="./faq">FAQ</a>
+                <a href="https://group8-cse-c.herokuapp.com/">Chat</a>
+            {% endif%}
+        </div> 
+        <button class="dropbtn">
+            <a style="color:black" href="./booking">Home</a>
+        </button>
+        <button class="dropbtn">
+            <a href="contact" style="color:black">About Us</a>
+        </button>
+        <button class="dropbtn">
+            <a style="color:black" href="https://ajaybezawada.github.io/explore-group8/">Explore</a>
+        </button>
+        {% if user.is_authenticated %}
+            <button class="dropbtn" style="background-color:#fae987">
+                <a style="color:black;" href="./dashboard">Dashboard</a>
+            </button> 
+            <button class="dropbtn">
+                <a style="color:black" href="./details">Update Profile</a>
+            </button>
+            <button type="button" class="dropbtn">
+                <a style="color:black" href="./ticket-status">Ticket Status</a>
+            </button>
+            <button type="button" class="dropbtn">
+                <a style="color:black" href="./discount">Offers</a>
+            </button>
+        {% else %}
+        
+        <button type="button" class="dropbtn">
+            <a style="color:black" href="./feedback">Feedback</a>
+        </button>
+            
+        {% endif%}
+    </div>
+</div>
+
+  
+  <script>
+  /* When the user clicks on the button, 
+  toggle between hiding and showing the dropdown content */
+  function myFunction() {
+    document.getElementById("myDropdown").classList.toggle("show");
+  }
+  
+  // Close the dropdown if the user clicks outside of it
+  window.onclick = function(event) {
+    if (!event.target.matches('.dropbtn')) {
+      var dropdowns = document.getElementsByClassName("dropdown-content");
+      var i;
+      for (i = 0; i < dropdowns.length; i++) {
+        var openDropdown = dropdowns[i];
+        if (openDropdown.classList.contains('show')) {
+          openDropdown.classList.remove('show');
+        }
+      }
+    }
+  }
+  </script>
+
+    <h2>Welcome, {{ user.username }}</h2>
+    <h5>These are your bookings</h5>
+    <a href="booking">Open the Main Page</a>
+
+    <section class="section section1">
+        <div>
+            {% for i in ticket %}
+                {% if user.username == i.BookingUser %}
+                <div class="row each-booking-div" id="{{ticket.ref_no}}">
+    
+                    <div class="col-4 middle-div">
+                        <div style="width:100%">
+    
+                            <div class="row places-div" style="font-size: 0.5cm;font-weight: bolder; ">
+                                <div style="max-width: 100%;">{{i.FlightName}} &middot; {{i.FlightNumber}} &middot; {{i.PassengerCount}} Passengers</div>
+                            </div>
+                            <div class="row places-div" style="display: flex;font-size: 0.5cm;color: #999999;font-weight: bold;">
+                                <div style="max-width: 45%;">{{i.FlightFrom}}</div>
+                                <div>&nbsp;-&nbsp;</div>
+                                <div style="max-width: 45%;">{{i.FlightTo}}</div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="col-2" style="display: flex;">
+                        <div style="display: flex;color: #999999;font-weight:bolder">
+                            <div>
+                                <span>Boarding Date: {{i.FlightDate}}</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-2 middle-div">
+                        <div style="font-size: 0.4cm; color: #945937;font-weight:bolder">
+                            Ticket Number: {{i.TicketNumber}}
+                        </div>
+                    </div>
+
+                    <br>
+                    <div class="col-2 last-div">
+                        <div>
+                            <div class="ticket-action-div">
+                                <form action="showTicket" method="POST">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="tickNum" value="{{i.TicketNumber}}" />
+                                    <button style="border-radius:5px;color:white;padding:0.2cm;background-color:green;font-weight:bolder;border:none;cursor:pointer" type="submit" class="btn btn-outline-primary">
+                                        Get Ticket as a PDF
+                                    </button>
+                                </form>
+                                <form action="cancelTicket" method="POST">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="tickNumb" value="{{i.TicketNumber}}" />
+                                    <button style="border-radius:5px;color:white;padding:0.2cm;background-color:#dc3545;font-weight:bolder;border:none;cursor:pointer" type="submit" class="btn btn-outline-primary">
+                                        Cancel Ticket
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-2 middle-div">
+                        <div>
+                            <div class="row booking-date-div" style="font-size: 0.30cm; color: #666;">
+                                {% if i.Status == 'CONFIRMED' %}
+                                    Booked on: {{i.BookingDate}} at {{i.BookingTime}}
+                                {% endif %}
+                            </div>
+                            <div class="row status-div">
+                                {% if i.Status == 'CONFIRMED' %}
+                                    <div style="padding:0.15cm;text-align:center;background-color:green;color:white">{{i.Status}}</div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </section>
+    
+{% endblock %}

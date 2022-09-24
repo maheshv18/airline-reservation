@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Leave</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+    {% load static %}
+<!--===============================================================================================-->	
+<link rel="stylesheet" type="text/css" href="{% static 'bootstrap.min.css'%}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'font-awesome.min.css'%}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'icon-font.min.css'%}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'animate.css'%}">
+<!--===============================================================================================-->	
+	<link rel="stylesheet" type="text/css" href="{% static 'hamburgers.min.css'%}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'animsition.min.css'%}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'select2.min.css'%}">
+<!--===============================================================================================-->	
+	<link rel="stylesheet" type="text/css" href="{% static 'daterangepicker.css'%}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'util.css'%}">
+	<link rel="stylesheet" type="text/css" href="{% static 'main.css'%}">
+<!--===============================================================================================-->
+</head>
+<body>
+	
+	<div class="limiter">
+		<div class="container-login100">
+			<div class="wrap-login100">
+				<div class="login100-form-title"  style="background-image:url({% static 'fli.png'%})">
+					<span class="login100-form-title-1">
+						Leave Request Form
+					</span>
+				</div>
+
+				<form class="login100-form validate-form" action="leave" method="POST">
+					{% csrf_token %}
+					<div class="wrap-input100 validate-input m-b-26" data-validate="Username is required">
+						<span class="label-input100">Username</span>
+						<input class="input100" type="text" name="username" placeholder="Enter username">
+						<span class="focus-input100"></span>
+					</div>
+					<div class="wrap-input100 validate-input m-b-26" data-validate="Userid is required">
+						<span class="label-input100">User Id</span>
+						<input class="input100" type="text" name="userid" placeholder="Enter user id">
+						<span class="focus-input100"></span>
+					</div>
+					<div class="wrap-input100 validate-input m-b-26" data-validate="mobile number is required">
+						<span class="label-input100">Mobile</span>
+						<input class="input100" type="number" name="Mobilenumber" placeholder="Enter user mobile number">
+						<span class="focus-input100"></span>
+					</div>
+					<div class="wrap-input100 validate-input m-b-26" data-validate="Email is required">
+						<span class="label-input100">Email</span>
+						<input class="input100" type="email" name="Email" placeholder="Enter email">
+						<span class="focus-input100"></span>
+					</div>
+					<div class="wrap-input100 validate-input m-b-26" data-validate="type is required">
+						<span class="label-input100">Type of time-off requested</span>
+        <div class="form-group">
+            <div class="radio">
+                <label>
+                    <input type="radio" name="entry.1409180901" value="Vacation" required>
+                    Vacation
+                </label>
+            </div>
+            <div class="radio">
+                <label>
+                    <input type="radio" name="entry.1409180901" value="Sick Leave" required>
+                    Sick Leave
+                </label>
+            </div>
+            <div class="radio">
+                <label>
+                    <input type="radio" name="entry.1409180901" value="Maternity/Paternity" required>
+                    Maternity/Paternity
+                </label>
+            </div>
+            <div class="radio">
+                <label>
+                    <input type="radio" name="entry.1409180901" value="Sick" required>
+                    Earn leave
+                </label>
+            </div>
+            <div class="radio">
+                <label>
+                    <input type="radio" name="entry.1409180901" value="Bereavement" required>
+                    Religious leave
+                </label>
+            </div>
+            <div class="radio">
+                <label>
+                    <input type="radio" name="entry.1409180901" value="Jury Duty" required>
+                    casual leave
+                </label>
+            </div>
+            <div class="radio">
+                <label>
+                    <input type="radio" name="entry.1409180901" value="Time off without pay" required>
+                    Time off without pay
+                </label>
+            </div>
+            <div class="radio">
+                <label>
+                    <input type="radio" name="entry.1409180901" value="Other" required>
+                    Other
+                </label>
+            </div>
+        </div>
+    </div>
+	<div class="wrap-input100 validate-input m-b-26" data-validate="start date is required">
+		<span class="label-input100">Start date</span>
+		<div class="form-group">
+            <input type="date" id="1989254035_date" name="sdate" placeholder="8/23/2019" class="form-control" required>
+        </div>
+		<span class="focus-input100"></span>
+	</div>
+	<div class="wrap-input100 validate-input m-b-26" data-validate="end date is required">
+		<span class="label-input100">End date</span>
+		<div class="form-group">
+            <input type="date" id="1989254035_date" name="edate" placeholder="8/23/2019" class="form-control" required>
+        </div>
+		<span class="focus-input100"></span>
+	</div>
+	<div class="wrap-input100 validate-input m-b-26" data-validate="comments is required">
+		<span class="label-input100">comments</span>
+		<input class="input100" type="text" name="comments" placeholder="Enter your comments">
+		<span class="focus-input100"></span>
+	</div>
+	<div class="container-login100-form-btn">
+		<input type="submit" class="login100-form-btn" placeholder="Register">
+			
+	</div>
+
+					
+				</form>
+			</div>
+		</div>
+	</div>
+	
+<!--===============================================================================================-->
+<script src="{% static 'jquery-3.2.1.min.js'%}"></script>
+<!--===============================================================================================-->
+	<script src="{% static 'animsition.min.js'%}"></script>
+<!--===============================================================================================-->
+	<script src="{% static 'popper.js'%}"></script>
+	<script src="{% static 'bootstrap.min.js'%}"></script>
+<!--===============================================================================================-->
+	<script src="{% static 'select2.min.js'%}"></script>
+<!--===============================================================================================-->
+	<script src="{% static 'moment.min.js'%}"></script>
+	<script src="{% static 'daterangepicker.js'%}"></script>
+<!--===============================================================================================-->
+	<script src="{% static 'countdowntime.js'%}"></script>
+<!--===============================================================================================-->
+	<script src="{% static 'main.js'%}"></script>
+
+</body>
+</html>

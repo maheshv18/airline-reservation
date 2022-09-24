@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Feedback</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<style>
+		.dropbtn {
+				background-color: white;
+				color: rgb(15, 2, 2);
+				padding: 16px;
+				font-size: 16px;
+				border: none;
+				border-radius: 9px;
+				cursor: pointer;
+			}
+
+			.dropbtn:hover, .dropbtn:focus {
+				background-color: #fae987;
+			}
+
+			.dropdown {
+				position: relative;
+				display: inline-block;
+				color: #000;
+				border-radius: 9px;
+			}
+
+			.dropdown-content {
+				display: none;
+				position: absolute;
+				background-color: #fcc8c8;
+				min-width: 160px;
+				border-radius: 8px;
+				margin: 4px;
+				overflow: auto;
+				box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+				z-index: 1;
+			}
+
+			.dropdown-content a {
+				color: black;
+				padding: 12px 16px;
+				text-decoration: none;
+				display: block;
+			}
+
+			.dropdown a:hover {background-color: #fae987}
+
+			.show {display: block;}
+
+			.dropbtn1 {
+				background-color: white;
+				color: rgb(15, 2, 2);
+				padding: 16px;
+				display:block;
+				font-size: 16px;
+				border: none;
+				border-radius: 9px;
+				cursor: pointer;
+				float: right;
+			}
+			.dropbtn1:hover, .dropbtn1:focus {
+				background-color: #fae987;
+			}
+		</style>
+	{% load static %}
+<!--===============================================================================================-->	
+	<link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'bootstrap.min.css'%}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'font-awesome.min.css'%}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'icon-font.min.css'%}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'animate.css'%}">
+<!--===============================================================================================-->	
+	<link rel="stylesheet" type="text/css" href="{% static 'hamburgers.min.css'%}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'animsition.min.css'%}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'select2.min.css'%}">
+<!--===============================================================================================-->	
+	<link rel="stylesheet" type="text/css" href="{% static 'daterangepicker.css'%}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'util.css'%}">
+	<link rel="stylesheet" type="text/css" href="{% static 'main.css'%}">
+	
+<!--These css files are for feedback  page alone  reference from https://codeconvey.com/feedback-form-in-html/ */	-->
+	<link rel="stylesheet" type="text/css" href="{% static 'style.css'%}">
+	<link rel="stylesheet" type="text/css" href="{% static 'demo.css'%}">
+<!--===============================================================================================-->
+</head>
+<body>
+	<div style="background-color: white;">
+		<div class="dropdown">
+			
+			<div id="myDropdown" class="dropdown-content">
+				{% if user.is_authenticated == False %}<a href="login">Login</a> 
+					<a href="./register">Register</a>
+				{% else %}
+					<a href="./logout">Logout</a> 
+					<a href="./feedback">Feedback</a>
+					<a href="./faq">FAQ</a>
+					<a href="https://group8-cse-c.herokuapp.com/">Chat</a>
+				{% endif%}
+			</div> 
+			<button class="dropbtn">
+				<a style="color:black" href="./booking">Home</a>
+			</button>
+			<button class="dropbtn">
+				<a href="contact" style="color:black">About Us</a>
+			</button>
+			<button class="dropbtn">
+				<a style="color:black" href="https://ajaybezawada.github.io/explore-group8/">Explore</a>
+			</button>
+			{% if user.is_authenticated %}
+				<button class="dropbtn">
+					<a style="color:black;" href="./dashboard">Dashboard</a>
+				</button> 
+				<button class="dropbtn">
+					<a style="color:black" href="./details">Update Profile</a>
+				</button>
+				<button type="button" class="dropbtn">
+					<a style="color:black" href="./ticket-status">Ticket Status</a>
+				</button>
+				<button type="button" class="dropbtn">
+					<a style="color:black" href="./discount">Offers</a>
+				</button>
+			{% else %}
+			
+			<button type="button" class="dropbtn" style="background-color: #fae987">
+				<a style="color:black" href="./feedback">Feedback</a>
+			</button>
+				
+			{% endif%}
+		</div>
+	</div>
+	<div class="limiter">
+		<div class="container-login100">
+			<div class="wrap-login100">
+				<div class="login100-form-title"  style="background-image:url({% static '1.jpg'%})">
+					<span class="login100-form-title-1">
+						Feedback
+					</span>
+				</div>
+
+				<form>
+				<div class="login100-form validate-form",id="feedback">
+                    <div class="wrap-input100 validate-input m-b-26" data-validate="First Name is required">
+						<span class="label-input100">First Name</span>
+						<input class="input100" type="text" name="firstname" placeholder="Enter First name">
+						<span class="focus-input100"></span>
+					</div>
+                    <div class="wrap-input100 validate-input m-b-26" data-validate="Last Name is required">
+						<span class="label-input100">Last Name</span>
+						<input class="input100" type="text" name="lastname" placeholder="Enter Last name">
+						<span class="focus-input100"></span>
+					</div>
+                    <div class="wrap-input100 validate-input m-b-26" data-validate="Flight_ticket_id is required">
+						<span class="label-input100">Flight_ticket_id</span>
+						<input class="input100" type="text" name="Flight_ticket_id" placeholder="Enter Flight Ticket Number">
+						<span class="focus-input100"></span>
+					</div>
+
+					<div class="wrap-input100 validate-input m-b-26" data-validate="Flight_ticket_id is required">
+						<span class="label-input100">Over All Expirence </span>
+						<span class="star-rating">
+						<input type="radio" name="rating1" value="1"><i></i>
+						<input type="radio" name="rating1" value="2"><i></i>
+						<input type="radio" name="rating1" value="3"><i></i>
+						<input type="radio" name="rating1" value="4"><i></i>
+						<input type="radio" name="rating1" value="5"><i></i>
+						  </span>	
+					</div>
+					<div class="clear"></div> 
+  					<hr class="survey-hr">
+					<div class="wrap-input100 validate-input m-b-26" data-validate="Flight_ticket_id is required">
+						<span class="label-input100">Friendly Service</span>
+						
+						<span class="star-rating">
+						<input type="radio" name="rating2" value="1"><i></i>
+						<input type="radio" name="rating2" value="2"><i></i>
+						<input type="radio" name="rating2" value="3"><i></i>
+						<input type="radio" name="rating2" value="4"><i></i>
+						<input type="radio" name="rating2" value="5"><i></i>
+						</span>
+						<span class="focus-input100"></span>
+					</div>
+					
+					<div class="wrap-input100 validate-input m-b-26" data-validate="Flight_ticket_id is required">
+					<span class="label-input100">Total Rating </span>
+					<div style="color:grey">
+						<span style="float:left">
+						 POOR
+						</span>
+						<span style="float:right">
+						  BEST
+						</span>
+					  </div>
+					<span class="scale-rating">
+					  <label value="1">
+					  <input type="radio" name="rating" >
+					  <label style="width:100%;"></label>
+					  </label>
+					  <label value="2">
+					  <input type="radio" name="rating" >
+					  <label style="width:100%;"></label>
+					  </label>
+					  <label value="3">
+					  <input type="radio" name="rating">
+					  <label style="width:100%;"></label>
+					  </label>
+					  <label value="4">
+					  <input type="radio" name="rating">
+					  <label style="width:100%;"></label>
+					  </label>
+					  <label value="5">
+					  <input type="radio" name="rating">
+					  <label style="width:100%;"></label>
+					  </label>
+					  <label value="6">
+					  <input type="radio" name="rating">
+					  <label style="width:100%;"></label>
+					  </label>
+					  <label value="7">
+					  <input type="radio" name="rating">
+					  <label style="width:100%;"></label>
+					  </label>
+					  <label value="8">
+					  <input type="radio" name="rating">
+					  <label style="width:100%;"></label>
+					  </label>
+					  <label value="9">
+					  <input type="radio" name="rating">
+					  <label style="width:100%;"></label>
+					  </label>
+					  <label value="10">
+					  <input type="radio" name="rating" value="10">
+					  <label style="width:100%;"></label>
+					  </label>
+					</span>
+				</div>  
+					<div class="wrap-input100 validate-input m-b-18" data-validate = "comments is required">
+						<span class="label-input100">feedback and comments</span>
+						<textarea class="form-control" rows="4" cols="50" name="comment" form="feedback" placeholder="Enter Here"></textarea>
+						<span class="focus-input100"></span>
+					</div>
+					<div class="container-login100-form-btn">
+						<button class="login100-form-btn">
+							Submit
+						</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
+
+
+
+<!--===============================================================================================-->
+<script src="{% static 'jquery-3.2.1.min.js'%}"></script>
+<!--===============================================================================================-->
+	<script src="{% static 'animsition.min.js'%}"></script>
+<!--===============================================================================================-->
+	<script src="{% static 'popper.js'%}"></script>
+	<script src="{% static 'bootstrap.min.js'%}"></script>
+<!--===============================================================================================-->
+	<script src="{% static 'select2.min.js'%}"></script>
+<!--===============================================================================================-->
+	<script src="{% static 'moment.min.js'%}"></script>
+	<script src="{% static 'daterangepicker.js'%}"></script>
+<!--===============================================================================================-->
+	<script src="{% static 'countdowntime.js'%}"></script>
+<!--===============================================================================================-->
+	<script src="{% static 'main.js'%}"></script>
+
+</body>
+</html>

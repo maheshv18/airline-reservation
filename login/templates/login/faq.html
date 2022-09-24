@@ -1,0 +1,205 @@
+{% load static %}
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Bootstrap FAQ Template | PrepBootstrap</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" type="text/css" href="{% static 'bootstrap.min.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'font-awesome.min.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'booking_css/bootstrap-theme.min.css'%}">
+
+
+
+    <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" href="{% static 'util.css'%}">
+        <link rel="stylesheet" type="text/css" href="{% static 'main.css'%}">
+        
+    <script type="text/javascript" src="{% static 'jquery-1.10.2.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'bootstrap.min.js' %}"></script>
+</head>
+<body>
+
+<div class="container">
+
+<div class="page-header">
+    <h1> FAQ <small>Pheonix Travel & Tour Frequently Asked Questions</small></h1>
+</div>
+
+
+<div class="container">
+    <br />
+    <br />
+    <br />
+
+    <div class="alert alert-warning alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        This section contains a wealth of information, related to <strong>Pheonix Travel & Tour</strong> . If you cannot find an answer to your question, 
+        make sure to contact us. 
+    </div>
+
+    <br />
+
+    <div class="panel-group" id="accordion">
+        <div class="faqHeader">General questions</div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">Is account registration required?</a>
+                </h4>
+            </div>
+            <div id="collapseOne" class="panel-collapse collapse in">
+                <div class="panel-body">
+                    Account registration at  is only required if the customer is going to book a flight ticket or wants to chat with support agent. 
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTen">Can I request for a new destination to be added to the list ?</a>
+                </h4>
+            </div>
+            <div id="collapseTen" class="panel-collapse collapse">
+                <div class="panel-body">
+                    Yes, you can write to us, based on popular demand appropriate modifications can be added by us. 
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseEleven">Can I cancel a ticket that has been booked ?</a>
+                </h4>
+            </div>
+            <div id="collapseEleven" class="panel-collapse collapse">
+                <div class="panel-body">
+                   Yes ticket cancellation within 24hrs of booking for registered customers is entitled for a full refund and for premium customers it is available till a day vefore the scheduled travel date.
+                </div>
+            </div>
+        </div>
+
+        <div class="faqHeader">Customers</div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">Can I carry extra baggage items?</a>
+                </h4>
+            </div>
+            <div id="collapseTwo" class="panel-collapse collapse">
+                <div class="panel-body">
+                    Yes!, it would be subject to extra charges beyond 10kg for domestic and beyond 18kg for international travel.
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree">How to upgrade to a premium account?</a>
+                </h4>
+            </div>
+            <div id="collapseThree" class="panel-collapse collapse">
+                <div class="panel-body">
+                    The steps involved in this process are really simple. All you need to do is:
+                    <ul>
+                        <li>Register an account</li>
+                        <li>Activate your account</li>
+                        <li>Go to the <strong>Home</strong> section </li>
+                        <li>Select upgrade to premium.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseFive">What are the discounts available?</a>
+                </h4>
+            </div>
+            <div id="collapseFive" class="panel-collapse collapse">
+                <div class="panel-body">
+                    Various disv=counts are offered periodically and it automatically gets applied at the time of ticket booking.
+                    <br />
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseSix">Can I edit my travel date after booking the ticket?</a>
+                </h4>
+            </div>
+            <div id="collapseSix" class="panel-collapse collapse">
+                <div class="panel-body">
+                    Yes, it can be done till 24 hrs prior to travel date, but it would be subject to extra charges.
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseEight">What are the payment options?</a>
+                </h4>
+            </div>
+            <div id="collapseEight" class="panel-collapse collapse">
+                <div class="panel-body">
+                    Online banking, Credit/Debit cards and Cash are the various payment modes accepted. 
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseNine">How do I check my ticket status?</a>
+                </h4>
+            </div>
+            <div id="collapseNine" class="panel-collapse collapse">
+                <div class="panel-body">
+                    Visit My Bookings tab under home, You would be able to see your booking info and status. 
+                </div>
+            </div>
+        </div>
+
+        
+       
+    </div>
+</div>
+
+<style>
+    .faqHeader {
+        font-size: 27px;
+        margin: 20px;
+    }
+
+    .panel-heading [data-toggle="collapse"]:after {
+        font-family: 'Glyphicons Halflings';
+        content: "\e072"; /* "play" icon */
+        float: right;
+        color: #F58723;
+        font-size: 18px;
+        line-height: 22px;
+        /* rotate "play" icon from > (right arrow) to down arrow */
+        -webkit-transform: rotate(-90deg);
+        -moz-transform: rotate(-90deg);
+        -ms-transform: rotate(-90deg);
+        -o-transform: rotate(-90deg);
+        transform: rotate(-90deg);
+    }
+
+    .panel-heading [data-toggle="collapse"].collapsed:after {
+        /* rotate "play" icon from > (right arrow) to ^ (up arrow) */
+        -webkit-transform: rotate(90deg);
+        -moz-transform: rotate(90deg);
+        -ms-transform: rotate(90deg);
+        -o-transform: rotate(90deg);
+        transform: rotate(90deg);
+        color: #454444;
+    }
+</style>
+
+<!-- Bootstrap FAQ - END -->
+
+</div>
+
+</body>
+</html>

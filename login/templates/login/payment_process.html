@@ -1,0 +1,147 @@
+{% load static %}
+
+{% block head %}
+    <link rel="stylesheet" href="{% static 'payment_process_style.css' %}">
+    <title>Payment Done</title>
+    <style>
+        .dropbtn {
+                background-color: white;
+                color: rgb(15, 2, 2);
+                padding: 16px;
+                font-size: 16px;
+                border: none;
+                border-radius: 9px;
+                cursor: pointer;
+            }
+
+            .dropbtn:hover, .dropbtn:focus {
+                background-color: #fae987;
+            }
+
+            .dropdown {
+                position: relative;
+                display: inline-block;
+                color: #000;
+                border-radius: 9px;
+            }
+
+            .dropdown-content {
+                display: none;
+                position: absolute;
+                background-color: #fcc8c8;
+                min-width: 160px;
+                border-radius: 8px;
+                margin: 4px;
+                overflow: auto;
+                box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+                z-index: 1;
+            }
+
+            .dropdown-content a {
+                color: black;
+                padding: 12px 16px;
+                text-decoration: none;
+                display: block;
+            }
+
+            .dropdown a:hover {background-color: #fae987}
+
+            .show {display: block;}
+
+            .dropbtn1 {
+                background-color: white;
+                color: rgb(15, 2, 2);
+                padding: 16px;
+                display:block;
+                font-size: 16px;
+                border: none;
+                border-radius: 9px;
+                cursor: pointer;
+                float: right;
+            }
+            .dropbtn1:hover, .dropbtn1:focus {
+                background-color: #fae987;
+            }
+        </style>
+{% endblock %}
+
+{% block body %}
+    <body style="background-color:#fff">
+        <div style="background-color: white;">
+            <div class="dropdown">
+                
+                <div id="myDropdown" class="dropdown-content">
+                    {% if user.is_authenticated == False %}<a href="login">Login</a> 
+                        <a href="./register">Register</a>
+                    {% else %}
+                        <a href="./logout">Logout</a> 
+                        <a href="./feedback">Feedback</a>
+                        <a href="./faq">FAQ</a>
+                        <a href="https://group8-cse-c.herokuapp.com/">Chat</a>
+                    {% endif%}
+                </div> 
+                <button class="dropbtn">
+                    <a style="color:black" href="./booking">Home</a>
+                </button>
+                <button class="dropbtn">
+                    <a href="contact" style="color:black">About Us</a>
+                </button>
+                <button class="dropbtn">
+                    <a style="color:black" href="https://ajaybezawada.github.io/explore-group8/">Explore</a>
+                </button>
+                {% if user.is_authenticated %}
+                    <button class="dropbtn">
+                        <a style="color:black;" href="./dashboard">Dashboard</a>
+                    </button> 
+                    <button class="dropbtn">
+                        <a style="color:black" href="./details">Update Profile</a>
+                    </button>
+                    <button type="button" class="dropbtn">
+                        <a style="color:black" href="./ticket-status">Ticket Status</a>
+                    </button>
+                    <button type="button" class="dropbtn">
+                        <a style="color:black" href="./discount">Offers</a>
+                    </button>
+                {% else %}
+                
+                <button type="button" class="dropbtn">
+                    <a style="color:black" href="./feedback">Feedback</a>
+                </button>
+                    
+                {% endif%}
+            </div>
+        </div>
+        <section style="margin-top:20vh">
+            <div style="animation-name: enlarge;animation-duration: .5s;animation-fill-mode: forwards;color: #dc3545;margin: auto;">
+                <center>
+                    <svg width="5em" height="5em" viewBox="0 0 16 16" class="bi bi-check-circle-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+                    </svg>
+                </center>
+            </div>
+            <div style="color: black;font-size: 1.5em;font-weight: bolder;text-align: center;margin-top: 20px;">
+                Your Flight Ticket is Confirmed!!
+            </div>
+            <div style="text-align: center;margin-top: 20px;color:black;font-weight: bolder">
+                <div class="flight1">Ticket Number: &nbsp;<span class="ref">{{tktNum}}</span>&nbsp;(<span class="from1">{{flightFrom}}</span> <span>&#8594;</span> <span class="to1">{{flightTo}}</span>)</div>
+            </div>
+            <div style="display: flex;margin-top: 20px;justify-content: center;">
+                <div>
+                    <form action="ticket" method="POST">
+                        {% csrf_token %}
+                        <button style="border-radius:5px;color:white;padding:0.4cm;background-color:#dc3545;font-weight:bolder;border:none;cursor:pointer" type="submit" class="btn btn-outline-primary">
+                            Show Ticket
+                        </button>
+                    </form>
+                    <br>
+                    <form action="downloadTicket" method="POST">
+                        {% csrf_token %}
+                        <button style="border-radius:5px;color:white;padding:0.4cm;background-color:#dc3545;font-weight:bolder;border:none;cursor:pointer" type="submit" class="btn btn-outline-primary">
+                            Get Ticket as a PDF
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </body>
+{% endblock %}

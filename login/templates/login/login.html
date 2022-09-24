@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Login</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	{% load static %}
+<!--===============================================================================================-->	
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'bootstrap.min.css'%}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'font-awesome.min.css'%}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'icon-font.min.css'%}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'animate.css'%}">
+<!--===============================================================================================-->	
+	<link rel="stylesheet" type="text/css" href="{% static 'hamburgers.min.css'%}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'animsition.min.css'%}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'select2.min.css'%}">
+<!--===============================================================================================-->	
+	<link rel="stylesheet" type="text/css" href="{% static 'daterangepicker.css'%}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'util.css'%}">
+	<link rel="stylesheet" type="text/css" href="{% static 'main.css'%}">
+<!--===============================================================================================-->
+</head>
+<body>
+	
+	<div class="limiter">
+		<div class="container-login100">
+			<div class="wrap-login100">
+				<div class="login100-form-title" style="background-image:url({% static '1.jpg'%})">	
+					<span class="login100-form-title-1">
+						Sign In
+					</span>
+				</div>
+
+				<form action ="" method="post" class="login100-form validate-form">
+					{% csrf_token %}
+					<div class="wrap-input100 validate-input m-b-26" data-validate="Username is required">
+						<span class="label-input100">Username</span>
+						<input class="input100" type="text" name="username" placeholder="Enter username">
+						<span class="focus-input100"></span>
+					</div>
+
+					<div class="wrap-input100 validate-input m-b-18" data-validate = "Password is required">
+						<span class="label-input100">Password</span>
+						<input class="input100" type="password" name="pass" placeholder="Enter password">
+						<span class="focus-input100"></span>
+					</div>
+
+					<div class="flex-sb-m w-full p-b-30">
+						<div style="padding:0.1cm;color: white;border: none;width:3cm;border: solid 2px green;border-radius: 5px;text-align: center;">
+							<a href="register">
+								Register
+							</a>
+						</div>
+						<div>
+							<a href="{% url "password_reset" %}" class="txt1">
+								Forgot Password?
+							</a>
+						</div>
+						
+					</div>
+
+					<div class="container-login100-form-btn">
+						<input type="submit" class="login100-form-btn" placeholder="Login">
+					</div>
+				</form>
+				<div>
+					{% for message in messages %}
+					<h3>{{message}}</h3>
+					{% endfor %}
+				</div>
+			</div>
+		</div>
+	</div>
+	
+<!--===============================================================================================-->
+	<script src="{% static 'jquery-3.2.1.min.js'%}"></script>
+<!--===============================================================================================-->
+	<script src="{% static 'animsition.min.js'%}"></script>
+<!--===============================================================================================-->
+	<script src="{% static 'popper.js'%}"></script>
+	<script src="{% static 'bootstrap.min.js'%}"></script>
+<!--===============================================================================================-->
+	<script src="{% static 'select2.min.js'%}"></script>
+<!--===============================================================================================-->
+	<script src="{% static 'moment.min.js'%}"></script>
+	<script src="{% static 'daterangepicker.js'%}"></script>
+<!--===============================================================================================-->
+	<script src="{% static 'countdowntime.js'%}"></script>
+<!--===============================================================================================-->
+	<script src="{% static 'main.js'%}"></script>
+
+</body>
+</html>

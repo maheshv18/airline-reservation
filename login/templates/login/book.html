@@ -1,0 +1,183 @@
+{% load static %}
+
+{% block head %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.typekit.net/cav5lva.css">
+    <link rel="stylesheet" href="{% static 'layout_style.css' %}">
+    <link rel="icon" type="image/ico" href="/static/img/favicon.ico">
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="{% static 'layout.js' %}"></script>
+    <title>{% block title %}Flight{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'book_style.css' %}">
+    <script type="text/javascript" src="{% static 'book.js' %}"></script>
+{% endblock %}
+
+{% block body %}
+    <section class="section section1">
+        <form action="payment" method="POST">
+            {% csrf_token %}
+            <div class="row main-row">
+                <div class="col-8">
+                <div class="ticket-details">
+                    <h5>Ticket Details</h5>
+                    <hr>
+                    
+                    <div class="row ticket-details-div">
+                        <div class="col-3 airline-name">
+                            <div class="brand">{{flightCompany}}</div>
+                            <div class="plane-name">{{flightNumber}}</div>
+                        </div>
+                        <div class="col-3 depart-time">
+                            <div class="time">{{flightBoarding}}</div>
+                            <div class="date ddate" data-value='{{flight1ddate}}'>{{flightDate}}</div>
+                            <div class="place">{{flightFrom}}</div>
+                        </div>
+                        <!-- <div class="col-3 time-details">
+                            <div class="duration" data-value="{{flight1.duration}}"></div>
+                        </div> -->
+                        <div class="col-3 arrival-time">
+                            <div class="time">{{flightArrival}}</div>
+                            <div class="date adate" data-value='{{flight1adate}}'>{{flightDate}}</div>
+                            <div class="place">{{flightTo}}</div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="baggage-details">
+
+                        <svg width="1em" height="1.5em" viewBox="0 3 16 16" class="bi bi-bag" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M8 1a2.5 2.5 0 0 0-2.5 2.5V4h5v-.5A2.5 2.5 0 0 0 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5zM2 5v9a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V5H2z"/>
+                        </svg> 
+
+                        30 Kgs Check-in, 7 Kgs Cabin
+                    </div>
+                </div>
+                <div class="traveller-details">
+                    <div class="traveller-head">
+                        <h5>Contact Information</h5>
+                    </div>
+                    <hr>
+                    
+                    <div class="row contact-details-div">
+                        <div class="row form-group">
+                            <!--<div class="input-group col">
+                                <div class="input-group-prepend">
+                                    
+                                </div>
+                            </div>-->
+                            <div class="col-3 ci">
+                                Country Code
+                                <select name="countryCode" class="custom-select">
+                                    <option data-countryCode="IN" value="91">India (+91)</option>
+                                </select>
+                            </div>
+                            <div class="col-3 ci">
+                                Mobile No
+                                <input type="text" name="mobile" class="form-control" placeholder="Mobile No" required>
+                            </div>
+                            <div class="col-6 ci">
+                                Email
+                                <input type="email" name="email" class="form-control" placeholder="Email" required>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="send-email">
+                        &nbsp;
+                    </div>
+                </div>
+                <div class="traveller-details individual-traveller-div">
+                    <div class="traveller-head">
+                        <h5>Passenger Details</h5>
+                        <h6><span>0</span> Passengers</h6>
+                    </div>
+                    <hr>
+                    <input type="hidden" id="p-count" name="passengersCount" value="0">
+                    <div class="each-traveller-div">
+                    </div>
+                    <div class="row each-traveller no-traveller">
+                        <div>
+                            <span class="traveller-name"></span>
+                            You have not added any adults to the list
+                        </div>
+                    </div>
+                    <div class="row add-traveller-div collapse" id="collapseExample">
+                        <div class="note-name"><span>IMPORTANT :</span> Enter your name as it is mentioned on your passport or any government approved ID.</div>
+                        <div class="row form-group add-traveller-div-name">
+                            <div class="col">
+                                <input type="text" name="fname" class="form-control" id="fname"  placeholder="First name">
+                            </div>
+                            <div class="col">
+                                <input type="text" name ="lname" class="form-control" id="lname" placeholder="Last name">
+                            </div>
+                        </div>
+                        
+                        <div class="row form-group radio-div">
+                            <div class="form-check-inline cd">
+                                Gender: 
+                            </div>
+                            <div class="form-check-inline">
+                                <label class="form-check-label">
+                                    <input type="radio" class="form-check-input gender" name="gender" value="Male">Male
+                                </label>
+                            </div>
+                            <div class="form-check-inline">
+                                <label class="form-check-label">
+                                    <input type="radio" class="form-check-input gender" name="gender" value="Female">Female
+                                </label>
+                            </div>
+                        </div>
+                        <button type="button" class="btn btn-primary btn-light" style="margin-right: auto;" onclick="add_traveller()">Add</button>
+                    </div>
+                    <hr>
+                    <div class="add-traveller">
+                        <button class="add-traveller-btn text-uppercase btn"  type="button" data-toggle="collapse" data-target="#collapseExample">+ ADD ADULT</button>
+                    </div>
+                </div>
+                <div class="payment-btn" style="background-color: transparent;">
+                    <button type="submit" class="btn btn-primary btn-danger">Proceed to payment</button>
+                </div>
+                </div>
+                <div class="col-4">
+                    <div class="price-details">
+                        <h5>Fare Summary</h5>
+                        <hr>
+                        <div class="row base-fare">
+                            <div class="base-fae-label">Base Fare: </div>
+                            <div class="base-fare-value">
+                                ₹ {{flightFare}}
+                            </div>
+                        </div>
+                        <div class="row surcharges">
+                            <div class="surcharges-label">Tax: </div>
+                            <div class="surcharges-value">₹ <span>{{flightFee}}</span></div>
+                            <input type="hidden" id="fee" value="{{fee}}">
+                        </div>
+                        <div class="row surcharges">
+                            <div class="surcharges-label">Discount({{couponCode}}): </div>
+                            <div class="surcharges-value">₹ <span>{{flightDiscount}}</span></div>
+                            <input type="hidden" id="fee" value="{{discountFee}}">
+                        </div>
+                        <hr>
+                        <div class="total-fare">
+                            <div class="total-fare-label">Total Fare: </div>
+                            <div class="total-fare-value">{{flightFareTotal}}</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col media-payment-btn">
+                    <div>
+                        <form action="payment" method="POST" style="display: flex;">
+                            {% csrf_token %}
+                            <input type="hidden" name="fFare", value="{{flightFareTotal}}">
+                        </form>
+                        <input type="submit" class="btn btn-primary btn-danger" placeholder="Proceed to payment">
+                    </div>
+                </div>
+            </div>
+        </form>
+    </section>
+{% endblock %}
